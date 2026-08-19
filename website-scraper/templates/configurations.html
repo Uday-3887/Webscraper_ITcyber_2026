@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block title %}Configurations · ScrapeFlow{% endblock %}
+{% block page_title %}Saved Configurations{% endblock %}
+{% block page_subtitle %}Reuse and manage scraper settings{% endblock %}
+{% block content %}<div class="content-card"><div class="card-heading"><div><h2>Reusable scraper configurations</h2><p>Edit, duplicate, run or delete a saved setup</p></div><a href="/new-scraper" class="btn btn-primary"><i class="bi bi-plus"></i>New configuration</a></div><div id="configurationsTable"><div class="empty-state compact"><div class="spinner-border text-primary"></div><p>Loading configurations…</p></div></div></div>{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/configurations.js') }}"></script>{% endblock %}

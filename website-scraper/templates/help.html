@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Help · ScrapeFlow{% endblock %}
+{% block page_title %}Help & Extraction Guide{% endblock %}
+{% block page_subtitle %}URL-only automatic scraping plus optional CSS selector control{% endblock %}
+{% block content %}
+<div class="row g-4">
+  <div class="col-lg-8">
+    <div class="content-card mb-4">
+      <h2>Universal Auto Extract</h2>
+      <ol class="steps">
+        <li>Open <strong>New Scraper</strong> and keep <strong>Universal Auto</strong> selected.</li>
+        <li>Paste a public website URL. A job name is generated automatically when blank.</li>
+        <li>Keep <strong>Auto Detect</strong> mode for normal use.</li>
+        <li>Select <strong>Preview first 10</strong> to see the dataset detected by the system.</li>
+        <li>Start scraping and download CSV, JSON or Excel from the result page.</li>
+      </ol>
+      <div class="notice"><i class="bi bi-magic"></i><p>Auto mode searches for HTML tables, JSON-LD/schema records, repeated product/article cards, list items and visible links. If static HTML is incomplete, it can retry with Playwright.</p></div>
+    </div>
+    <div class="content-card mb-4">
+      <h2>When to use Custom selectors</h2>
+      <ol class="steps">
+        <li>Use Preview first. If the wrong dataset is selected, choose <strong>Custom</strong>.</li>
+        <li>Right-click the required item in Chrome or Edge and select <strong>Inspect</strong>.</li>
+        <li>Find one repeated outer container, such as <code>article.product_pod</code>.</li>
+        <li>Add selectors for title, price, URL, image or any required field.</li>
+      </ol>
+    </div>
+    <div class="content-card">
+      <h2>Books demo configuration</h2>
+      <div class="code-block"><button onclick="copyText(this)">Copy</button><pre>URL: https://books.toscrape.com/
+Container: article.product_pod
+Title: h3 a → attribute: title
+Price: .price_color → text
+Availability: .availability → text
+Rating: .star-rating → attribute: class
+Product URL: h3 a → link
+Next page: li.next a</pre></div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="content-card">
+      <h2>What “any website” means</h2>
+      <p>The scraper works with publicly accessible HTML and JavaScript pages on a best-effort basis. Every website has a different structure, so Preview and Custom selectors are available when automatic detection is not sufficient.</p>
+      <h2 class="mt-4">Common selectors</h2>
+      <table class="table selector-table"><tr><td>Class</td><td><code>.product</code></td></tr><tr><td>ID</td><td><code>#main</code></td></tr><tr><td>Tag + class</td><td><code>a.link</code></td></tr><tr><td>Nested</td><td><code>.card .price</code></td></tr><tr><td>Attribute</td><td><code>a[href]</code></td></tr></table>
+      <div class="notice warning"><i class="bi bi-exclamation-triangle"></i><p>CAPTCHA, login, private pages, paywalls and access blocks are not bypassed. Use an official API where available.</p></div>
+    </div>
+  </div>
+</div>
+{% endblock %}
